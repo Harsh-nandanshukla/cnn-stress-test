@@ -1,0 +1,4 @@
+Image index: 264
+True label: airplane (0)
+Predicted label: ship (8)
+Confidence: 0.9057

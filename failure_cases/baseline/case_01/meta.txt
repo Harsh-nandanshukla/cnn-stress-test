@@ -1,0 +1,4 @@
+Image index: 24
+True label: dog (5)
+Predicted label: deer (4)
+Confidence: 0.8103

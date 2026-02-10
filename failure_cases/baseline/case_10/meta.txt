@@ -1,0 +1,4 @@
+Image index: 158
+True label: dog (5)
+Predicted label: cat (3)
+Confidence: 0.8246

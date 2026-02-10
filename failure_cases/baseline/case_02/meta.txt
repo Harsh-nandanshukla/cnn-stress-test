@@ -1,0 +1,4 @@
+Image index: 35
+True label: bird (2)
+Predicted label: ship (8)
+Confidence: 0.8605

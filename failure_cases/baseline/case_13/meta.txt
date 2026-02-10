@@ -1,0 +1,4 @@
+Image index: 221
+True label: frog (6)
+Predicted label: dog (5)
+Confidence: 0.7719

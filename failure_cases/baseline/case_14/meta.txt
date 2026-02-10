@@ -1,0 +1,4 @@
+Image index: 237
+True label: airplane (0)
+Predicted label: horse (7)
+Confidence: 0.9180

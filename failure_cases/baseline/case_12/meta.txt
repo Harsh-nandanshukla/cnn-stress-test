@@ -1,0 +1,4 @@
+Image index: 215
+True label: airplane (0)
+Predicted label: deer (4)
+Confidence: 0.7517

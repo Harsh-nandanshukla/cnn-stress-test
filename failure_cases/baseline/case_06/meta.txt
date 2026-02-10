@@ -1,0 +1,4 @@
+Image index: 91
+True label: cat (3)
+Predicted label: frog (6)
+Confidence: 0.8103

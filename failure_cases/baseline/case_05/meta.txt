@@ -1,0 +1,4 @@
+Image index: 81
+True label: automobile (1)
+Predicted label: truck (9)
+Confidence: 0.9054
