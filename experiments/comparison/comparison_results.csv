@@ -1,0 +1,4 @@
+case,true_label,baseline_prediction,baseline_confidence,improved_prediction,improved_confidence
+case_03,dog,bird,0.9024,bird,0.3565
+case_08,bird,dog,0.7589,dog,0.8553
+case_11,ship,airplane,0.7808,automobile,0.409
