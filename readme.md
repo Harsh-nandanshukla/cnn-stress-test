@@ -226,7 +226,3 @@ This structured workflow ensures:
 
 ---
 
-If you want, I can now also give you:
-
-* A short **project summary paragraph** for the top of the README
-* Or a clean **6-page report structure outline** for submission.
