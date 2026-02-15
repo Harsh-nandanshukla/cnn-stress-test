@@ -7,9 +7,9 @@ from models.resnet18 import ResNet18_CIFAR
 from PIL import Image
 import numpy as np
 
-# =======================
-# 1. Configuration
-# =======================
+
+#  Configuration
+
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 CONFIDENCE_THRESHOLD = 0.75
 MAX_FAILURES = 20
@@ -25,9 +25,9 @@ CLASS_NAMES = [
     "dog", "frog", "horse", "ship", "truck"
 ]
 
-# =======================
-# 2. Dataset & Loader
-# =======================
+
+#  Dataset & Loader
+
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(
@@ -44,17 +44,17 @@ test_loader = DataLoader(
     test_dataset, batch_size=1, shuffle=False, num_workers=0
 )
 
-# =======================
-# 3. Load Model
-# =======================
+
+#  Load Model
+
 model = ResNet18_CIFAR(num_classes=10)
 model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
 model.to(DEVICE)
 model.eval()
 
-# =======================
-# 4. Failure Extraction
-# =======================
+
+#  Failure Extraction
+
 failure_count = 0
 
 with torch.no_grad():

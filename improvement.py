@@ -12,9 +12,9 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# =======================
-# 1. Fixed Random Seed
-# =======================
+
+#  Fixed Random Seed
+
 SEED = 42
 random.seed(SEED)
 np.random.seed(SEED)
@@ -23,22 +23,22 @@ torch.cuda.manual_seed_all(SEED)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-# =======================
-# 2. Device
-# =======================
+
+# Device
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# =======================
-# 3. Hyperparameters
-# =======================
+
+#  Hyperparameters
+
 num_classes = 10
 batch_size = 64
 epochs = 20
 learning_rate = 0.1
 
-# =======================
-# 4. Transforms (unchanged)
-# =======================
+
+#  Transforms 
+
 transform_train = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.4914, 0.4822, 0.4465),
@@ -51,9 +51,9 @@ transform_test = transforms.Compose([
                          (0.2470, 0.2435, 0.2616))
 ])
 
-# =======================
-# 5. Dataset & Loaders
-# =======================
+
+#  Dataset & Loaders
+
 train_dataset = datasets.CIFAR10(
     root="./data", train=True, download=False, transform=transform_train
 )
@@ -70,12 +70,12 @@ test_loader = DataLoader(
     test_dataset, batch_size=batch_size, shuffle=False, num_workers=0
 )
 
-# =======================
+
 # 6. Model
-# =======================
+
 model = ResNet18_CIFAR(num_classes=num_classes).to(device)
 
-# 🔥 ONLY CHANGE HERE
+
 criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
 
 optimizer = optim.SGD(
@@ -85,9 +85,9 @@ optimizer = optim.SGD(
     weight_decay=5e-4
 )
 
-# =======================
+
 # 7. Training Loop
-# =======================
+
 best_acc = 0.0
 os.makedirs("experiments/improved", exist_ok=True)
 csv_path = "experiments/improved/metrics.csv"
@@ -160,9 +160,9 @@ for epoch in range(epochs):
 
 print(f"\nBest Test Accuracy (Improved): {best_acc:.2f}%")
 
-# =======================
+
 # Plot Curves
-# =======================
+
 df = pd.read_csv(csv_path)
 
 plt.figure()

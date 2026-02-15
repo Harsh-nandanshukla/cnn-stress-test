@@ -7,15 +7,15 @@ from PIL import Image
 from torchvision import transforms
 from models.resnet18 import ResNet18_CIFAR
 
-# =======================
+
 # Configuration
-# =======================
+
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# 🔥 Load IMPROVED model
+#  Load IMPROVED model
 MODEL_PATH = "experiments/improved/best_model.pth"
 
-# 🔥 Use baseline failure images
+#  Use baseline failure images
 BASE_FAILURE_DIR = "failure_cases/baseline"
 
 SELECTED_CASES = ["case_03", "case_08", "case_11"]
@@ -28,9 +28,9 @@ transform = transforms.Compose([
     transforms.Normalize(MEAN, STD)
 ])
 
-# =======================
+
 # Grad-CAM Hook Class
-# =======================
+
 class GradCAM:
     def __init__(self, model, target_layer):
         self.model = model
@@ -65,9 +65,8 @@ class GradCAM:
 
         return cam
 
-# =======================
-# Load Improved Model
-# =======================
+
+# Loading Improved Model
 model = ResNet18_CIFAR(num_classes=10)
 model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
 model.to(DEVICE)
@@ -76,9 +75,9 @@ model.eval()
 target_layer = model.model.layer4[-1].conv2
 gradcam = GradCAM(model, target_layer)
 
-# =======================
-# Run Grad-CAM
-# =======================
+
+# Running Grad-CAM
+
 for case in SELECTED_CASES:
     case_dir = os.path.join(BASE_FAILURE_DIR, case)
     img_path = os.path.join(case_dir, "image.png")
@@ -96,7 +95,7 @@ for case in SELECTED_CASES:
     heatmap = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB)
     overlay = np.uint8(0.5 * heatmap + 0.5 * img_np)
 
-    # 🔥 Save with different name
+    
     save_path = os.path.join(case_dir, "gradcam_improved.png")
     cv2.imwrite(save_path, overlay)
 

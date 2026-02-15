@@ -1,4 +1,4 @@
-# Project Name
+# Project Name : Stress-Testing of Convolutional Neural Networks
 
 ## Overview
 This repository contains an ongoing project focused on experimentation, development, and analysis.  

@@ -6,9 +6,9 @@ import os
 import csv
 from models.resnet18 import ResNet18_CIFAR
 
-# ======================
+
 # Config
-# ======================
+
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 BASELINE_PATH = "experiments/baseline/best_model.pth"
@@ -30,9 +30,9 @@ transform = transforms.Compose([
     transforms.Normalize(MEAN, STD)
 ])
 
-# ======================
+
 # Load Model Function
-# ======================
+
 def load_model(path):
     model = ResNet18_CIFAR(num_classes=10)
     model.load_state_dict(torch.load(path, map_location=DEVICE))
@@ -43,15 +43,14 @@ def load_model(path):
 baseline_model = load_model(BASELINE_PATH)
 improved_model = load_model(IMPROVED_PATH)
 
-# ======================
-# Prepare Save Directory
-# ======================
+# Preparing Save Directory
+
 os.makedirs("experiments/comparison", exist_ok=True)
 csv_path = "experiments/comparison/comparison_results.csv"
 
-# ======================
+
 # Comparison
-# ======================
+
 with open(csv_path, mode="w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow([

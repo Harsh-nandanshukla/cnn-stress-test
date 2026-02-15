@@ -7,9 +7,9 @@ from PIL import Image
 from torchvision import transforms
 from models.resnet18 import ResNet18_CIFAR
 
-# =======================
+
 # Configuration
-# =======================
+
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 MODEL_PATH = "experiments/baseline/best_model.pth"
@@ -26,9 +26,8 @@ transform = transforms.Compose([
     transforms.Normalize(MEAN, STD)
 ])
 
-# =======================
 # Grad-CAM Hook Class
-# =======================
+
 class GradCAM:
     def __init__(self, model, target_layer):
         self.model = model
@@ -63,9 +62,9 @@ class GradCAM:
 
         return cam
 
-# =======================
+
 # Load Model
-# =======================
+
 model = ResNet18_CIFAR(num_classes=10)
 model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
 model.to(DEVICE)
@@ -75,9 +74,9 @@ model.eval()
 target_layer = model.model.layer4[-1].conv2
 gradcam = GradCAM(model, target_layer)
 
-# =======================
-# Run Grad-CAM on selected cases
-# =======================
+
+# Runnimg Grad-CAM on selected cases
+
 for case in SELECTED_CASES:
     case_dir = os.path.join(BASE_FAILURE_DIR, case)
     img_path = os.path.join(case_dir, "image.png")
